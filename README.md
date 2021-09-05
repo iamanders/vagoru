@@ -1,0 +1,2 @@
+# vagoru
+Terminal time tracking
