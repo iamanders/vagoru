@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/iamanders/vagoru/pkg/database"
+	"github.com/iamanders/vagoru/pkg/terminal"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -27,5 +28,6 @@ func main() {
 		fmt.Println("INFO: Table already exists")
 	}
 
-	// TODO: Parse terminal args
+	// Parse argv
+	terminal.ParseArgv()
 }
