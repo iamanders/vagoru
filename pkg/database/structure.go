@@ -1,9 +1,9 @@
 package database
 
-import "log"
+import "errors"
 
 // Create the initial db structure
-func CreateDbStructure() {
+func CreateDbStructure() error {
 	createStudentTableSQL := `CREATE TABLE times (
 			"id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 			"starts_at" datetime,
@@ -14,7 +14,10 @@ func CreateDbStructure() {
 
 	statement, err := dbHandle.Prepare(createStudentTableSQL)
 	if err != nil {
-		log.Fatal(err.Error())
+		return errors.New("table already exists")
+		// log.Fatal(err.Error())
 	}
 	statement.Exec()
+
+	return nil
 }

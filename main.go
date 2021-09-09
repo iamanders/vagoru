@@ -22,7 +22,10 @@ func main() {
 	}
 	defer database.CloseDb()
 
-	database.CreateDbStructure()
+	err = database.CreateDbStructure()
+	if err != nil {
+		fmt.Println("INFO: Table already exists")
+	}
 
 	// TODO: Parse terminal args
 }
