@@ -14,18 +14,18 @@ func ParseArgv(output bool) string {
 
 	if len(args) < 1 {
 		// No args
-		out = noArgsOutput()
+		out = command.NoArgs()
 	} else {
 		// Match commands
 		switch strings.ToLower(args[0]) {
 		case "help":
-			out = helpOutput()
+			out = command.Help()
 		case "version":
-			out = versionOutput()
+			out = command.Version()
 		case "status":
-			out = command.StatusCommand()
+			out = command.Status()
 		default:
-			out = commandNotFoundOutput()
+			out = command.NotFound()
 		}
 	}
 
