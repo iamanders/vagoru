@@ -3,6 +3,8 @@ package terminal
 import (
 	"os"
 	"strings"
+
+	"github.com/iamanders/vagoru/pkg/command"
 )
 
 func ParseArgv() {
@@ -14,18 +16,15 @@ func ParseArgv() {
 		return
 	}
 
-	// Help
-	if strings.EqualFold("help", args[0]) {
+	// Match commands
+	switch strings.ToLower(args[0]) {
+	case "help":
 		helpOutput()
-		return
-	}
-
-	// Version
-	if strings.EqualFold("version", args[0]) {
+	case "version":
 		versionOutput()
-		return
+	case "status":
+		command.StatusCommand()
+	default:
+		commandNotFoundOutput()
 	}
-
-	// Command not found
-	// TODO
 }

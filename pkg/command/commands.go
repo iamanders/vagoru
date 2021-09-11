@@ -1,4 +1,4 @@
-package logic
+package command
 
 type task struct {
 	title string

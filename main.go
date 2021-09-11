@@ -25,7 +25,7 @@ func main() {
 
 	err = database.CreateDbStructure()
 	if err != nil {
-		fmt.Println("INFO: Table already exists")
+		// fmt.Println("INFO: Table already exists")
 	}
 
 	// Parse argv
