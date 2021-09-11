@@ -1,30 +1,38 @@
 package terminal
 
 import (
+	"fmt"
 	"os"
 	"strings"
 
 	"github.com/iamanders/vagoru/pkg/command"
 )
 
-func ParseArgv() {
+func ParseArgv(output bool) string {
 	args := os.Args[1:]
+	var out string
 
-	// No args
 	if len(args) < 1 {
-		noArgsOutput()
-		return
+		// No args
+		out = noArgsOutput()
+	} else {
+		// Match commands
+		switch strings.ToLower(args[0]) {
+		case "help":
+			out = helpOutput()
+		case "version":
+			out = versionOutput()
+		case "status":
+			out = command.StatusCommand()
+		default:
+			out = commandNotFoundOutput()
+		}
 	}
 
-	// Match commands
-	switch strings.ToLower(args[0]) {
-	case "help":
-		helpOutput()
-	case "version":
-		versionOutput()
-	case "status":
-		command.StatusCommand()
-	default:
-		commandNotFoundOutput()
+	// Return or print
+	if output {
+		fmt.Println(out)
+		return ""
 	}
+	return out
 }

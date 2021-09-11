@@ -1,12 +1,10 @@
 package command
 
-import "fmt"
-
-func StatusCommand() {
+func StatusCommand() string {
 	if a, b := activeTime(); a {
-		fmt.Println("Current " + b)
+		return "Current " + b
 	} else {
-		fmt.Println("No project started")
+		return "No project started"
 	}
 }
 

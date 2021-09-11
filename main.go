@@ -29,5 +29,5 @@ func main() {
 	}
 
 	// Parse argv
-	terminal.ParseArgv()
+	terminal.ParseArgv(true)
 }
