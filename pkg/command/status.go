@@ -1,14 +1,12 @@
 package command
 
-func Status() string {
-	if a, b := activeTime(); a {
-		return "Current " + b
-	} else {
-		return "No project started"
-	}
-}
+import "github.com/iamanders/vagoru/pkg/database"
 
-func activeTime() (bool, string) {
-	return false, ""
-	// return true, "Vagoru"
+func Status() string {
+	project, err := database.CurrentTracking()
+	if err != nil {
+		return "No project started"
+	} else {
+		return "Current " + project.Title
+	}
 }
