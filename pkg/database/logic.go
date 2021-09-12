@@ -16,7 +16,7 @@ type Tracking struct {
 }
 
 func CurrentTracking() (Tracking, error) {
-	stmt, err := dbHandle.Prepare("SELECT project FROM times WHERE stops_at IS NULL")
+	stmt, err := GetDb().Prepare("SELECT project FROM times WHERE stops_at IS NULL")
 	if err != nil {
 		log.Fatal(err)
 	}

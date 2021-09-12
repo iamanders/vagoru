@@ -2,9 +2,11 @@ package database
 
 import (
 	"database/sql"
-	"flag"
 	"log"
 	"os"
+	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var dbHandle *sql.DB
@@ -14,10 +16,9 @@ var dbPath = getDbPath()
 // If testing environment, :memory: is returned
 func getDbPath() string {
 	// Early return if testing environment
-	if flag.Lookup("test.v") != nil {
+	if strings.Contains(os.Args[0], ".test") {
 		return ":memory:"
 	}
-
 	// Else the database is in the home dir
 	dirname, err := os.UserHomeDir()
 	if err != nil {
@@ -64,5 +65,8 @@ func CloseDb() {
 
 // Get the db handle from package
 func GetDb() *sql.DB {
+	if dbHandle == nil {
+		OpenDb()
+	}
 	return dbHandle
 }
