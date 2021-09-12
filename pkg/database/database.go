@@ -61,6 +61,7 @@ func OpenDb() (*sql.DB, error) {
 // Close db
 func CloseDb() {
 	dbHandle.Close()
+	dbHandle = nil
 }
 
 // Get the db handle from package
@@ -70,4 +71,10 @@ func GetDb() *sql.DB {
 		CreateDbStructure() // TODO: Only run if needed
 	}
 	return dbHandle
+}
+
+// Reset memory db - Used in testing
+func ResetDb() {
+	CloseDb()
+	GetDb()
 }
