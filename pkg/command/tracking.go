@@ -1,18 +1,17 @@
 package command
 
-import (
-	"errors"
+import "github.com/iamanders/vagoru/pkg/database"
 
-	"github.com/iamanders/vagoru/pkg/database"
-)
+func StartTracking() string {
+	// TODO: Args
 
-func StartTracking(projectTitle string) (int, error) {
-	sql := `INSERT INTO "times" ("starts_at", "project", "comment") VALUES ($1, $2, $3);`
-	id := 0
-	err := database.GetDb().QueryRow(sql, "2021-01-01 10:00:00", projectTitle, "Comment").Scan(&id)
-	if err != nil {
-		return -1, errors.New("could not start tracking " + err.Error())
+	// TODO: Already tracking?
+	currentTracking, _ := database.CurrentTracking()
+	if currentTracking.Title != "" {
+		return "Already tracking!!1111111§§§"
 	}
 
-	return id, nil
+	// TODO: Insert
+	database.StartTracking("New project")
+	return "-"
 }

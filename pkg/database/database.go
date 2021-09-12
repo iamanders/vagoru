@@ -75,7 +75,8 @@ func GetDb() *sql.DB {
 	return dbHandle
 }
 
-// Reset memory db - Used in testing
+// Reset db
+// Used in testing when using sqlite :memory: database
 func ResetDb() {
 	CloseDb()
 	GetDb()

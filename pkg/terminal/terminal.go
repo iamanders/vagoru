@@ -24,6 +24,8 @@ func ParseArgv(output bool) string {
 			out = command.Version()
 		case "status":
 			out = command.Status()
+		case "start":
+			out = command.StartTracking()
 		default:
 			out = command.NotFound()
 		}
