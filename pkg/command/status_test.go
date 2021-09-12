@@ -18,7 +18,7 @@ func TestStatusCommandNoProject(t *testing.T) {
 
 func TestStatusCommandProject(t *testing.T) {
 	database.ResetDb()
-	StartTracking("Project 1")
+	database.StartTracking("Project 1")
 	output := Status()
 	testString := "Project 1"
 	if !strings.Contains(output, testString) {
