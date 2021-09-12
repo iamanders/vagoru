@@ -3,9 +3,12 @@ package command
 import (
 	"strings"
 	"testing"
+
+	"github.com/iamanders/vagoru/pkg/database"
 )
 
 func TestStatusCommandNoProject(t *testing.T) {
+	database.ResetDb()
 	output := Status()
 	testString := "No project started"
 	if !strings.Contains(output, testString) {
@@ -14,6 +17,7 @@ func TestStatusCommandNoProject(t *testing.T) {
 }
 
 func TestStatusCommandProject(t *testing.T) {
+	database.ResetDb()
 	StartTracking("Project 1")
 	output := Status()
 	testString := "Project 1"

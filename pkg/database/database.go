@@ -60,7 +60,9 @@ func OpenDb() (*sql.DB, error) {
 
 // Close db
 func CloseDb() {
-	dbHandle.Close()
+	if dbHandle != nil {
+		dbHandle.Close()
+	}
 	dbHandle = nil
 }
 
