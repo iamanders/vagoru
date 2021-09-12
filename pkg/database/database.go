@@ -67,6 +67,7 @@ func CloseDb() {
 func GetDb() *sql.DB {
 	if dbHandle == nil {
 		OpenDb()
+		CreateDbStructure() // TODO: Only run if needed
 	}
 	return dbHandle
 }
