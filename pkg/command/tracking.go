@@ -1,17 +1,25 @@
 package command
 
-import "github.com/iamanders/vagoru/pkg/database"
+import (
+	"os"
+
+	"github.com/iamanders/vagoru/pkg/database"
+)
 
 func StartTracking() string {
-	// TODO: Args
+	// Args
+	if len(os.Args) < 3 {
+		return "Missing arg 3 - project title, aborting.."
+	}
+	projectTitle := os.Args[2]
 
-	// TODO: Already tracking?
+	// Already tracking?
 	currentTracking, _ := database.CurrentTracking()
 	if currentTracking.Title != "" {
-		return "Already tracking!!1111111§§§"
+		return "Already tracking, aborting.."
 	}
 
-	// TODO: Insert
-	database.StartTracking("New project")
-	return "-"
+	// Insert
+	database.StartTracking(projectTitle)
+	return "Started tracking " + projectTitle
 }
